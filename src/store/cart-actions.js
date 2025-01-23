@@ -10,7 +10,7 @@ export const fetchCartData = () => {
                 throw new Error('Fetching cart data failed');
             }
             const cartData = await response.json();
-            dispatch(cartActions.replaceCart(cartData));
+            dispatch(cartActions.replaceCart({items: cartData.items || [], totalQuantity: cartData.totalQuantity}));
         }
 
         try {
@@ -26,6 +26,7 @@ export const fetchCartData = () => {
 }
 
 export const sendCartData =  (cart) => {
+    
     return async (dispatch) => {
         dispatch(uiActions.showNotification({
             'status': 'pending',

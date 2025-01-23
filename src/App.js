@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Cart from './components/Cart/Cart';
 import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
 import Notification from './components/UI/Notification';
 import { fetchCartData, sendCartData } from './store/cart-actions';
+import { uiActions } from './store/ui-slice';
 
 let isInitial = true;
 
@@ -20,18 +21,30 @@ function App() {
   }, [dispatch])
 
   useEffect(() => {
-    if(isInitial) {
+    if (isInitial) {
       isInitial = false;
       return;
     }
-    if(cart.changed) {
+
+    let timer_id;
+    if (cart.changed) {
       dispatch(sendCartData(cart));
+
+      timer_id = setTimeout(() => {
+        dispatch(uiActions.hideNotification());
+      }, 2000);
+    }
+
+    return () => {
+      clearTimeout(timer_id);
     }
   }, [cart, dispatch]);
 
+
+
   return (
     <>
-      {notification && <Notification {...notification}/>}
+      { notification && <Notification {...notification} />}
       <Layout>
         {showCart && <Cart />}
         <Products />

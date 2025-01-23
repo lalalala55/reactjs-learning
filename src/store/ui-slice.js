@@ -7,6 +7,9 @@ const uiSlice = createSlice({
     toggle(state) {
       state.cartIsVisible = !state.cartIsVisible;
     },
+    hideNotification(state, action) {
+      state.notification = null;
+    },
     showNotification(state, action) {
       state.notification = {
         status: action.payload.status,
