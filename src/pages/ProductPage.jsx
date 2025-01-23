@@ -1,8 +1,13 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 
 function ProductPage() {
     const params = useParams();
-    return <h1>ProductPage - {params.id}</h1>
+    const navigate = useNavigate();
+
+    return <>
+        <h1>ProductPage - {params.id}</h1>
+        <button onClick={() => navigate('/products')}>Back</button>
+    </>
 }
 
 export default ProductPage;
