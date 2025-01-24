@@ -1,30 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom'
 
 import EventsList from '../components/EventsList';
 
 function EventsPage() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [fetchedEvents, setFetchedEvents] = useState();
-  const [error, setError] = useState();
-
-  useEffect(() => {
-    async function fetchEvents() {
-      setIsLoading(true);
-    //  removed logic here and pasted in loader
-      setIsLoading(false);
-    }
-
-    fetchEvents();
-  }, []);
-  return (
-    <>
-      <div style={{ textAlign: 'center' }}>
-        {isLoading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
-      </div>
-      {!isLoading && fetchedEvents && <EventsList events={fetchedEvents} />}
-    </>
-  );
+    const fetchedEvents = useLoaderData();
+    
+    return <EventsList events={fetchedEvents} />
 }
 
 export default EventsPage;
