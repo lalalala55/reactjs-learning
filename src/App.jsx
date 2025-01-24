@@ -27,6 +27,7 @@ import NewEventPage from './components/NewEventPage';
 import EditEventPage from './components/EditEventPage';
 import RootLaylout from './components/RootLayout';
 import EventDetailPage from './components/EventDetailPage';
+import EventsLayout from './components/EventsLayout';
 
 const routeDefinitions = [
   {
@@ -34,25 +35,32 @@ const routeDefinitions = [
     element: <RootLaylout />,
     children: [
       {
-        path: '/',
+        path: '',
         element: <HomePage />
       },
       {
-        path: '/events',
-        element: <EventsPage />
-      },
-      {
-        path: '/events/:id',
-        element: <EventDetailPage />
-      },
-      {
-        path: '/events/new',
-        element: <NewEventPage />
-      },
-      {
-        path: '/events/:id/edit',
-        element: <EditEventPage />
+        path: 'events/',
+        element: <EventsLayout />,
+        children: [
+          {
+            path: '',
+            element: <EventsPage />
+          },
+          {
+            path: ':id',
+            element: <EventDetailPage />
+          },
+          {
+            path: 'new',
+            element: <NewEventPage />
+          },
+          {
+            path: ':id/edit',
+            element: <EditEventPage />
+          }
+        ]
       }
+      
     ]
   }
 ]
