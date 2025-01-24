@@ -1,6 +1,11 @@
+import { useLoaderData } from 'react-router-dom'
+
 import classes from './EventsList.module.css';
 
-function EventsList({ events }) {
+function EventsList() {
+  // since EventList component is a child of EventPage so we get to see the loader data here also.
+  const events = useLoaderData(); // returns closest loader till the parent
+
   return (
     <div className={classes.events}>
       <h1>All Events</h1>
