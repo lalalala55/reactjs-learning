@@ -28,11 +28,13 @@ import EditEventPage from './components/EditEventPage';
 import RootLaylout from './components/RootLayout';
 import EventDetailPage from './components/EventDetailPage';
 import EventsLayout from './components/EventsLayout';
+import ErrorPage from './components/ErrorPage';
 
 const routeDefinitions = [
   {
     path: '/',
     element: <RootLaylout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '',
