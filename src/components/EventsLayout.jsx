@@ -1,5 +1,5 @@
 import { Outlet, useNavigation } from "react-router-dom";
-import MainNavigation from "./MainNavigation";
+import EventsNavigation from "./EventsNavigation";
 
 function EventsLayout() {
   const navigation = useNavigation();
@@ -7,6 +7,7 @@ function EventsLayout() {
   return (
     <>
       {navigation.state === "loading" && <h1>Loading....</h1>}
+      <EventsNavigation />
       <Outlet />
     </>
   );

@@ -47,7 +47,7 @@ const routeDefinitions = [
         element: <HomePage />,
       },
       {
-        path: "events/",
+        path: "events",
         element: <EventsLayout />,
         children: [
           {
@@ -56,23 +56,31 @@ const routeDefinitions = [
             loader: eventsLoader,
           },
           {
-            path: ":id",
-            element: <EventDetailPage />,
-            loader: eventDetailLoader,
-          },
-          {
             path: "new",
             element: <NewEventPage />,
           },
           {
-            path: ":id/edit",
-            element: <EditEventPage />,
+            path: ":id",
+            id: "event-detail",
+            loader: eventDetailLoader,
+            children: [
+              {
+                path: "",
+                element: <EventDetailPage />,
+              },
+              {
+                path: "edit",
+                element: <EditEventPage />,
+              },
+            ],
           },
         ],
       },
     ],
   },
 ];
+
+console.log(routeDefinitions);
 
 const router = createBrowserRouter(routeDefinitions);
 
