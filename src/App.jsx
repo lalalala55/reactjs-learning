@@ -27,7 +27,9 @@ import {
 
 import HomePage from "./components/HomePage";
 import EventsPage, { loader as eventsLoader } from "./components/EventsPage";
-import NewEventPage from "./components/NewEventPage";
+import NewEventPage, {
+  action as newEventAction,
+} from "./components/NewEventPage";
 import EditEventPage from "./components/EditEventPage";
 import RootLaylout from "./components/RootLayout";
 import EventDetailPage, {
@@ -58,6 +60,7 @@ const routeDefinitions = [
           {
             path: "new",
             element: <NewEventPage />,
+            action: newEventAction,
           },
           {
             path: ":id",
