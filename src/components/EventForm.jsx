@@ -1,10 +1,11 @@
-import { useNavigate, Form, useNavigation } from "react-router-dom";
+import { useNavigate, Form, useNavigation, useActionData } from "react-router-dom";
 
 import classes from "./EventForm.module.css";
 
 function EventForm({ method, event }) {
   const navigate = useNavigate();
   const navigation = useNavigation();
+  const data = useActionData();
 
   const isSubmitting = navigation.state === 'submitting';
   
@@ -14,14 +15,19 @@ function EventForm({ method, event }) {
   }
 
   return (
-    <Form method="post" className={classes.form}>
+    <Form method="post" className={classes.form}> 
+      {data && data.errors && <ul>
+          {
+            Object.values(data.errors).map(error => <li key={error}>{error}</li>)
+          }
+        </ul>}
       <p>
         <label htmlFor="title">Title</label>
         <input
           id="title"
           type="text"
           name="title"
-          required
+          // required
           defaultValue={event ? event.title : ""}
         />
       </p>
@@ -31,7 +37,7 @@ function EventForm({ method, event }) {
           id="image"
           type="url"
           name="image"
-          required
+          // required
           defaultValue={event ? event.image : ""}
         />
       </p>
@@ -41,7 +47,7 @@ function EventForm({ method, event }) {
           id="date"
           type="date"
           name="date"
-          required
+          // required
           defaultValue={event ? event.date : ""}
         />
       </p>
@@ -51,7 +57,7 @@ function EventForm({ method, event }) {
           id="description"
           name="description"
           rows="5"
-          required
+          // required
           defaultValue={event ? event.description : ""}
         />
       </p>
