@@ -34,6 +34,8 @@ import EditEventPage from "./components/EditEventPage";
 import RootLaylout from "./components/RootLayout";
 import EventDetailPage, {
   loader as eventDetailLoader,
+  action as deleteEventAction,
+  action
 } from "./components/EventDetailPage";
 import EventsLayout from "./components/EventsLayout";
 import ErrorPage from "./components/ErrorPage";
@@ -66,6 +68,7 @@ const routeDefinitions = [
             path: ":id",
             id: "event-detail",
             loader: eventDetailLoader,
+            action: deleteEventAction,
             children: [
               {
                 path: "",
